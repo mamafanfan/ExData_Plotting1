@@ -1,0 +1,43 @@
+---
+layout: post
+published: true
+title: cmus - a cli audio player
+author: lulu
+author_login: lulu
+author_email: 4mg@outlook.com
+author_url: http://ed.usphere.net/
+categories: play tech
+csl: "/assets/bibtex/mee.csl"
+bibliography: "/assets/bibtex/references.bib"
+---
+
+The use of online music streaming services has almost eliminated my need for a software music player. But when there are times that I want to play a few of my favorites in a less compromising sound quality than an online music service has to offer, I'll always opt for [cmus][2], a tiny player that will browse through my nearly 300GB digital music collection with ease, handles flac and can be easily configured to do scrobbling.
+
+Installation is not more than a simple `apt-get install cmus` command as it is available in the main repository. It should work out of the box in most cases but for system using [ALSA][3], the default settings will have to be changed to get sound. Press `7` within cmus, find the variables and change them accordingly as below:
+
+```
+> dsp.alsa.device		`default`    
+> mixer.alsa.channel	`Master`    
+> mixer.alsa.device		`default`    
+> output_plugin			`alsa`
+```
+
+I use [cmusfm][4] for scrobbling. Installation is done by cloning the repo and build it. 
+
+```bash
+git clone https://github.com/Arkq/cmusfm.git
+```
+
+It may be necessary to change the last line of the instruction to `make && sudo make install` if you are following the README.md in the git repo. Finally, cmus must be told to use cmusfm. This is done by going to the cmus setting tab once more. Press `7`, find and change the following variable:
+
+```
+> status_display_program	`cmusfm`    
+```
+
+
+[1]: <http://www.wadia.com/> "Wadia"
+[2]: <https://cmus.github.io/> "cmus console player"
+[3]: <http://en.wikipedia.org/wiki/Advanced_Linux_Sound_Architecture> "ALSA"
+[4]: <https://github.com/Arkq/cmusfm> "cmusfm scrobbler"
+
+
